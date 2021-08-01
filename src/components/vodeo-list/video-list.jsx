@@ -3,7 +3,7 @@ import VideoItems from "../video-item/video-items"
 import styles from "./video-list.module.css"
 
 const VideoList = ({ videos, selectedVideo, display }) => {
-    console.log(display)
+    console.log(videos)
     return (
         <li className={styles.videos}>
             {videos.map((i) => (

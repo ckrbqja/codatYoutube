@@ -1,6 +1,6 @@
-import React from "react"
+import React, { memo } from "react"
 import styles from "./video_item.module.css"
-const VideoItems = ({ videos, videos: { snippet }, selectedVideo, display }) => {
+const VideoItems = memo(({ videos, videos: { snippet }, selectedVideo, display }) => {
     const displayType = display === "list" ? styles.list : styles.grid
     return (
         <li className={`${styles.container} ${displayType}`} onClick={() => selectedVideo(videos)}>
@@ -17,5 +17,5 @@ const VideoItems = ({ videos, videos: { snippet }, selectedVideo, display }) => 
             </div>
         </li>
     )
-}
+})
 export default VideoItems

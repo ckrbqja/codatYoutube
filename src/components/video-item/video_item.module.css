@@ -2,6 +2,13 @@
     width: 50%;
     padding: 0.2em;
 }
+
+.container.grid {
+    width: 100%;
+}
+.container.list {
+    width: 50%;
+}
 .video {
     display: flex;
     align-items: center;

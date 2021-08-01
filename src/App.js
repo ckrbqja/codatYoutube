@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react"
-import "./App.css"
-import VideoList from "./vodeo-list/video-list"
-
-function App() {
+import styles from "./App.module.css"
+import VideoList from "./components/vodeo-list/video-list"
+import SearchHeader from "./components/search_header/search_header"
+function App({ youtube }) {
     const [videos, setVideos] = useState([])
 
-    useEffect(() => {
-        const requestOptions = {
-            method: "GET",
-            redirect: "follow",
-        }
+    const onSearch = (query) => {
+        youtube
+            .search(query) //
+            .then((video) => setVideos(video))
+    }
 
-        fetch(
-            "https://youtube.googleapis.com/youtube/v3/videos?key=AIzaSyAVWWHKnDvdOuiq02_gzC9ptncQZjAuW6g&part=snippet&chart=mostPopular&maxResult=25&key=AIzaSyAVWWHKnDvdOuiq02_gzC9ptncQZjAuW6g",
-            requestOptions
-        )
-            .then((response) => response.json())
-            .then((result) => setVideos(result.items))
-            .catch((error) => console.log("error", error))
+    useEffect(() => {
+        youtube
+            .mostPopular() //
+            .then((video) => setVideos(video))
     }, [])
 
-    return <VideoList videos={videos} />
+    return (
+        <div className={styles.App}>
+            <SearchHeader onSearch={onSearch} />
+            <VideoList videos={videos} />
+        </div>
+    )
 }
 
 export default App
